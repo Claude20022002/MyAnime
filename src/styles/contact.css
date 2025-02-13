@@ -1,0 +1,9 @@
+.body {
+    background: url("./images/pexels-rickyrecap-1907785.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(5px);
+    color: #e68369;
+    padding: 20px 5px;
+}
