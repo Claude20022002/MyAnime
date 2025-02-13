@@ -203,7 +203,7 @@ export default function Footer() {
                 direction="row"
                 justifyContent="center"
                 sx={{
-                    backgroundColor: "rgba(0, 0, 0, 0.05)",
+                    backgroundColor: "rgb(102 59 161 / 25%)",
                     padding: "10px 0",
                     marginTop: "40px",
                 }}

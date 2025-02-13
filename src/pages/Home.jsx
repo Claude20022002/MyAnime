@@ -100,10 +100,19 @@ export default function Home() {
                     <Stack
                         sx={{ justifyContent: "center", alignItems: "center" }}
                     >
-                        <Typography variant="h4" sx={{ margin: "20px" }}>
+                        <Typography
+                            variant="h4"
+                            sx={{
+                                textAlign: "center",
+                                margin: "20px",
+                                padding: "10px",
+                                width: "100%",
+                            }}
+                        >
                             Welcome to Anime World
                         </Typography>
                         <Stack
+                            id="card-container"
                             sx={{
                                 justifyContent: "center",
                                 alignItems: "center",

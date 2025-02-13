@@ -11,18 +11,7 @@
     background-repeat: no-repeat;
     width: 100%;
 }
-.content::after {
-    content: "";
-    width: 100%;
-    position: absolute;
-    inset: 0;
-    background-image: url("/public/images/pattern-squiggly-line-top.svg");
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1;
-}
 .home {
     font-family: "Open Sans", serif;
 }

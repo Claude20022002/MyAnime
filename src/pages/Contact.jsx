@@ -111,16 +111,15 @@ export default function Contact() {
                         }}
                     >
                         <Typography variant="h4" fontWeight="bold">
-                            Access knowledge in just one click.
+                            Access to the manga library in just one click.
                         </Typography>
                         <Typography variant="body1" sx={{ mt: 2 }}>
-                            Explore our vast collection of books and enrich your
-                            mind through reading.
+                            Explore our vast collection of mangas.
                         </Typography>
 
                         <Button
                             component={Link}
-                            to="/librairie"
+                            to="/"
                             sx={{
                                 mt: 3,
                                 backgroundColor: "#FFF",
@@ -273,6 +272,7 @@ export default function Contact() {
                             sx={{
                                 backgroundColor: "#E68369",
                                 color: "#FFF",
+                                marginTop: "15px",
                                 fontWeight: "bold",
                                 "&:hover": {
                                     backgroundColor: "#c65b49",

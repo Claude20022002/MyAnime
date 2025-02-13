@@ -41,7 +41,7 @@ export default function Header() {
                     }}
                 >
                     <img
-                        src="/public/svg/vecteezy_vector-manga-anime-pirate-japan-character-cute-cartoon_24104955.svg"
+                        src="/svg/vecteezy_vector-manga-anime-pirate-japan-character-cute-cartoon_24104955.svg"
                         width="30%"
                         height="30%"
                         alt=""
