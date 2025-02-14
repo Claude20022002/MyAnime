@@ -74,7 +74,7 @@ export default function Footer() {
                 </IconButton>
                 <IconButton
                     color="primary"
-                    href="https://github.com/Claude20022002/biblioth-que/tree/main"
+                    href="https://github.com/Claude20022002/MyAnime"
                     aria-label="github"
                 >
                     <GitHub />
