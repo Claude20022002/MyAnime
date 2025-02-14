@@ -37,7 +37,10 @@ export default function Planning() {
                 onChange={(event, newValue) => setDay(newValue)}
                 variant="scrollable"
                 scrollButtons="auto"
-                sx={{ background: "#FBF6E2", borderRadius: "10px" }}
+                sx={{
+                    background: "#FBF6E2",
+                    borderRadius: "10px",
+                }}
             >
                 {[
                     "monday",
@@ -68,6 +71,7 @@ export default function Planning() {
                             "repeat(auto-fill, minmax(250px, 1fr))",
                         gap: 2,
                         mt: 3,
+                        mb: 3,
                     }}
                 >
                     {animeList.map((anime) => (

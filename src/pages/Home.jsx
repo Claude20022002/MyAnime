@@ -1,38 +1,51 @@
-import { Box, Stack, Typography, Button } from "@mui/material";
+import {
+    Box,
+    Stack,
+    Typography,
+    Button,
+    CircularProgress,
+} from "@mui/material";
 import SplitText from "../components/splitText/SplitText";
-import { useState } from "react";
-import SearchBar from "../components/searchbar/SearchBar";
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import SearchBar from "../components/searchbar/SearchBar";
 import Card from "../components/card/Card";
 
 export default function Home() {
-    const handleAnimationComplete = () => {
-        console.log("All letters have animated!");
-    };
     const [data, setData] = useState([]);
     const [activeAnime, setActiveAnime] = useState(null);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [background, setBackground] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
     const containerRef = useRef(null);
 
     useEffect(() => {
         const fetchData = async () => {
+            setIsLoading(true);
             try {
                 const response = await axios.get(
                     `https://api.jikan.moe/v4/anime?page=${page}`
                 );
-                console.log(response.data);
                 setData(response.data.data);
                 setTotalPages(response.data.pagination.last_visible_page);
             } catch (error) {
-                console.error("Error fetching data:", error);
+                console.error(
+                    "Erreur lors de la récupération des données :",
+                    error
+                );
+            } finally {
+                setIsLoading(false);
             }
         };
 
         fetchData();
     }, [page]);
+
+    const filteredAnimes = data.filter((anime) =>
+        anime.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     return (
         <Box
@@ -82,10 +95,16 @@ export default function Home() {
                             easing="easeOutCubic"
                             threshold={0.2}
                             rootMargin="-50px"
-                            onLetterAnimationComplete={handleAnimationComplete}
                         />
                     </Stack>
                 </Stack>
+
+                {/* Barre de recherche */}
+                <SearchBar
+                    searchQuery={searchQuery}
+                    setSearchQuery={setSearchQuery}
+                />
+
                 <Stack
                     component="section"
                     className="card-container"
@@ -96,44 +115,57 @@ export default function Home() {
                         alignItems: "center",
                     }}
                 >
-                    <SearchBar />
-                    <Stack
-                        sx={{ justifyContent: "center", alignItems: "center" }}
+                    <Typography
+                        variant="h4"
+                        sx={{
+                            textAlign: "center",
+                            margin: "20px",
+                            padding: "10px",
+                        }}
                     >
-                        <Typography
-                            variant="h4"
-                            sx={{
-                                textAlign: "center",
-                                margin: "20px",
-                                padding: "10px",
-                                width: "100%",
-                            }}
-                        >
-                            Welcome to Anime World
-                        </Typography>
+                        Anime List
+                    </Typography>
+
+                    {/* Affichage des résultats */}
+                    {isLoading ? (
+                        <CircularProgress sx={{ marginTop: "20px" }} />
+                    ) : (
                         <Stack
-                            id="card-container"
                             sx={{
                                 justifyContent: "center",
                                 alignItems: "center",
                             }}
                         >
                             <div className="wrapper">
-                                {data.map((anime) => (
-                                    <Card
-                                        key={anime.mal_id}
-                                        anime={anime}
-                                        activeAnime={activeAnime}
-                                        setActiveAnime={setActiveAnime}
-                                        setBackground={setBackground}
-                                    />
-                                ))}
+                                {filteredAnimes.length > 0 ? (
+                                    filteredAnimes.map((anime) => (
+                                        <Card
+                                            key={anime.mal_id}
+                                            anime={anime}
+                                            activeAnime={activeAnime}
+                                            setActiveAnime={setActiveAnime}
+                                            setBackground={setBackground}
+                                        />
+                                    ))
+                                ) : (
+                                    <Typography
+                                        variant="h6"
+                                        sx={{
+                                            color: "white",
+                                            marginTop: "20px",
+                                        }}
+                                    >
+                                        Aucun anime trouvé 😢
+                                    </Typography>
+                                )}
                             </div>
                         </Stack>
-                    </Stack>
+                    )}
+
+                    {/* Pagination */}
                     <Stack
                         className="pagination"
-                        display={"block"}
+                        display="block"
                         sx={{ padding: "30px" }}
                     >
                         <Button

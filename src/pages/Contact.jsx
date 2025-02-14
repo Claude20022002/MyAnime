@@ -167,7 +167,7 @@ export default function Contact() {
                         {/* Champ Nom */}
                         <Box>
                             <TextField
-                                label="Nom"
+                                label="Name"
                                 variant="outlined"
                                 fullWidth
                                 {...register("nameUser", {
